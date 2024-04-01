@@ -1,0 +1,233 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package ventasentradasteatromoro;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Carlos Barrìa Valdevenito
+ * carl.barria@duocuc.cl
+ * Lunes, 25 marzo del 2024
+ * Nota: se omiten las acentuaciones en los mensajes visibles.
+ */
+public class VentasEntradasTeatroMoro {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // Creación de objeto tipo Scanner para ingreso de datos por el usuario
+        Scanner teclado = new Scanner(System.in);
+        
+        //definición de Variables
+        int vipEst, vipPub, pbEst, pbPub, paEst, paPub, palcoEst, palcoPub;
+        int tipoEntrada, totalAPagar, valorDesc;
+        char esTarifa, deseaSalir;
+        String entradaEs, tarifa, nomCliente;
+        float descAplica;
+        boolean salir, yaPago;
+        
+        //Mensaje de bienvenida
+        System.out.println("Bienvenido al Teatro Moro - Sistema venta de Entradas");
+        
+        //inicializacion de variables por Tipo de Entradas
+	vipEst = 13000;
+	vipPub = 25000;
+	pbEst = 10000;
+	pbPub = 19000;
+	paEst = 9000;
+	paPub = 11000;
+	palcoEst = 6500;
+	palcoPub = 7200;
+        tarifa = "";
+        entradaEs = "";
+        totalAPagar = 0;
+        valorDesc = 0;
+        descAplica = 0;
+        salir = false;
+        yaPago = false;
+        
+        do {    //Bucle de control del sistema
+            System.out.println("Ingrese su nombre para comenzar: ");
+            nomCliente = teclado.nextLine();
+            
+            System.out.println("Seleccione tipo de Entrada");
+            System.out.println("|    Entradas        | Estudiante | Publico Gral|");
+            System.out.println("|  1.- VIP           |   $"+vipEst+"   |     $"+vipPub+"  |");
+            System.out.println("|  2.- Platea baja   |   $"+pbEst+"   |     $"+pbPub+"  |");
+            System.out.println("|  3.- Platea alta   |    $"+paEst+"   |     $"+paPub+"  |");
+            System.out.println("|  4.- Palcos        |    $"+palcoEst+"   |      $"+palcoPub+"  |");
+            System.out.println("|  5.- Salida (para Finalizar sistema)");
+            System.out.print("Mi eleccion es (1-5): ");
+            tipoEntrada = teclado.nextInt();
+
+            //Switch para ejecutar según tipo de Entrada
+            switch (tipoEntrada) {
+                case 1 -> {
+                    //Definición de Entradas VIP
+                    System.out.println("Entrada VIP. Que tipo de Tarifa es?");
+                    System.out.print("E [Estudiante] o P [Publico Gral]: ");
+                    esTarifa = teclado.next().charAt(0);
+                    yaPago = false;
+                    
+                    do {    //Ciclo confirma la compra segun tipo de tarifa
+                        if (esTarifa == 'e' || esTarifa == 'E') {
+                            tarifa = "Estudiante";
+                            totalAPagar = vipEst;
+                            descAplica = 100-((float)vipEst*100)/(float)vipPub;
+                            valorDesc = vipPub - vipEst;
+                            yaPago = true;
+                        } else {
+                            if (esTarifa == 'p' || esTarifa == 'P') {
+                                tarifa = "Publico Gral.";
+                                totalAPagar = vipPub;
+                                yaPago = true;
+                            } else {
+                                System.out.println("Opcion no Valida.");
+                                System.out.print("presione E [Estudiante] o P [Publico Gral]: ");
+                                esTarifa = teclado.next().charAt(0);
+                            }
+                        }
+                    } while (yaPago == false);
+                }
+                case 2 -> {
+                    //Definición de Entradas Platea baja
+                    System.out.println("Entrada Platea baja. Que tipo de Tarifa es?");
+                    System.out.print("E [Estudiante] o P [Publico Gral]: ");
+                    esTarifa = teclado.next().charAt(0);
+                    yaPago = false;
+                    
+                    do {    //Ciclo confirma la compra segun tipo de tarifa
+                        if (esTarifa == 'e' || esTarifa == 'E') {
+                            tarifa = "Estudiante";
+                            totalAPagar = pbEst;
+                            descAplica = 100-((float)pbEst*100)/(float)pbPub;
+                            valorDesc = pbPub - pbEst;
+                            yaPago = true;
+                        } else {
+                            if (esTarifa == 'p' || esTarifa == 'P') {
+                                tarifa = "Publico Gral.";
+                                totalAPagar = pbPub;
+                                yaPago = true;
+                            } else {
+                                System.out.println("Opcion no Valida.");
+                                System.out.print("presione E [Estudiante] o P [Publico Gral]: ");
+                                esTarifa = teclado.next().charAt(0);
+                            }
+                        }
+                    } while (yaPago == false);
+                }
+                case 3 -> {
+                    //Definición de Entradas Platea alta
+                    System.out.println("Entrada Platea alta. Que tipo de Tarifa es?");
+                    System.out.print("E [Estudiante] o P [Publico Gral]: ");
+                    esTarifa = teclado.next().charAt(0);
+                    yaPago = false;
+                    
+                    do {    //Ciclo confirma la compra segun tipo de tarifa
+                        if (esTarifa == 'e' || esTarifa == 'E') {
+                            tarifa = "Estudiante";
+                            totalAPagar = paEst;
+                            descAplica = 100-((float)paEst*100)/(float)paPub;
+                            valorDesc = paPub - paEst;
+                            yaPago = true;
+                        } else {
+                            if (esTarifa == 'p' || esTarifa == 'P') {
+                                tarifa = "Publico Gral.";
+                                totalAPagar = paPub;
+                                yaPago = true;
+                            } else {
+                                System.out.println("Opcion no Valida.");
+                                System.out.print("presione E [Estudiante] o P [Publico Gral]: ");
+                                esTarifa = teclado.next().charAt(0);
+                            }
+                        }
+                    } while (yaPago == false);
+                }
+                case 4 -> {
+                    //Definición de Entradas Palcos
+                    System.out.println("Entrada Palcos. Que tipo de Tarifa es?");
+                    System.out.print("E [Estudiante] o P [Publico Gral]: ");
+                    esTarifa = teclado.next().charAt(0);
+                    yaPago = false;
+                    
+                    do {    //Ciclo confirma la compra segun tipo de tarifa
+                        if (esTarifa == 'e' || esTarifa == 'E') {
+                            tarifa = "Estudiante";
+                            totalAPagar = palcoEst;
+                            descAplica = 100-((float)palcoEst*100)/(float)palcoPub;
+                            valorDesc = palcoPub - palcoEst;
+                            yaPago = true;
+                        } else {
+                            if (esTarifa == 'p' || esTarifa == 'P') {
+                                tarifa = "Publico Gral.";
+                                totalAPagar = palcoPub;
+                                yaPago = true;
+                            } else {
+                                System.out.println("Opcion no Valida.");
+                                System.out.print("presione E [Estudiante] o P [Publico Gral]: ");
+                                esTarifa = teclado.next().charAt(0);
+                            }
+                        }
+                    } while (yaPago == false);
+                }
+                case 5 -> //Opción Salir del Sistema
+                    salir = true;
+                default -> {
+                    System.out.println(nomCliente +". Opcion indicada no existe o es incorrecta.\n");
+                    teclado.nextLine();
+                }
+            }
+       
+            //Resultado final - mostrar al cliente el valor a pagar por la entrada; e indicando el descuento y porcentaje sobre Público Ggral
+            if (yaPago) {
+                switch (tipoEntrada) {
+                    case 1 -> entradaEs="VIP.";
+                    case 2 -> entradaEs="Platea baja.";
+                    case 3 -> entradaEs="Platea alta.";
+                    case 4 -> entradaEs="Palcos.";
+                    default -> throw new AssertionError();
+                }
+                System.out.println("\nHola "+ nomCliente +", aca detalles de tu compra.\nTarifa "+ tarifa +"(descuento $"+ valorDesc +" %"+ descAplica+")");
+                System.out.println("Tipo Entrada: "+ entradaEs);
+                System.out.println("Valor a pagar: $"+ totalAPagar);
+                System.out.println("Gracias por su compra, disfrute la funcion.\n");
+                yaPago = false;
+                
+                //Condicion para salir del sistema post venta de entrada.
+                System.out.print("Desea Salir del sistema? [s/n]: ");
+                deseaSalir = teclado.next().charAt(0);
+                
+                do {    //Ciclo de cierre de sistema, post compra o no.
+                    if (deseaSalir == 's' || deseaSalir == 'S') {
+                        salir = true;
+                    } else {
+                        if (deseaSalir == 'n' || deseaSalir == 'N') {
+                            salir = false;
+                        } else {
+                            System.out.print("Desea Salir del sistema? [s/n]: ");
+                            deseaSalir = teclado.next().charAt(0);
+                            if (deseaSalir == 's' || deseaSalir == 'S') {
+                                salir = true;
+                            }
+                        }
+                    }
+                    
+                    //Limpieza de variables para iniciar una nueva compra
+                    teclado.nextLine();
+                    tarifa = "";
+                    totalAPagar = 0;
+                    valorDesc = 0;
+                    descAplica = 0;
+                } while (deseaSalir != 's' && deseaSalir != 'S' && deseaSalir != 'n' && deseaSalir != 'N');
+            }
+        } while (salir == false);
+        System.out.println("Gracias por su visita, vuelva pronto.");
+        
+        //Cerramos la variable teclado (Scanner) para liberar los recursos
+        teclado.close();
+    }
+}
